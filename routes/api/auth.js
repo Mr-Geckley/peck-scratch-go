@@ -39,4 +39,30 @@ router.post("/register", (req, res) => {
   });
 });
 
+// ROUTE DESCRIPTION
+// @route   GET api/auth/login
+// @desc    login the user, but really just returns the token(jwt)
+// @access  public
+router.post("/login", (req, res) => {
+  const userName = req.body.userName;
+  const passWord = req.body.passWord;
+
+  // Confirm/find user by userName
+  Auth.findOne({ userName: userName }).then(auth => {
+    // check for user
+    if (!auth) {
+      return res.status(404).json({ userName: "Username not found" });
+    }
+
+    // check passWord
+    bcrypt.compare(passWord, auth.passWord).then(isMatch => {
+      if (isMatch) {
+        res.json({ msg: "success" });
+      } else {
+        return res.status(400).json({ passWord: "Password incorrect" });
+      }
+    });
+  });
+});
+
 module.exports = router;
