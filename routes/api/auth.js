@@ -3,6 +3,11 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const passport = require("passport");
+
+// Load input Validation
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
 
 // bring in auth model
 const Auth = require("../../models/Auth");
@@ -18,9 +23,16 @@ router.get("/test", (req, res) => res.json({ msg: "auth works" }));
 // @desc    register user
 // @access  public
 router.post("/register", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   Auth.findOne({ userName: req.body.userName }).then(userName => {
     if (userName) {
-      return res.status(400).json({ userName: "Username already exists" });
+      errors.userName = "User name already exists";
+      return res.status(400).json(errors);
     } else {
       const newPlayer = new Auth({
         userName: req.body.userName,
@@ -46,6 +58,13 @@ router.post("/register", (req, res) => {
 // @desc    login the user, but really just returns the token(jwt)
 // @access  public
 router.post("/login", (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const userName = req.body.userName;
   const passWord = req.body.passWord;
 
@@ -53,7 +72,8 @@ router.post("/login", (req, res) => {
   Auth.findOne({ userName: userName }).then(auth => {
     // check for user
     if (!auth) {
-      return res.status(404).json({ userName: "Username not found" });
+      errors.userName = "User not found";
+      return res.status(404).json(errors);
     }
 
     // check passWord
@@ -77,10 +97,26 @@ router.post("/login", (req, res) => {
           }
         );
       } else {
-        return res.status(400).json({ passWord: "Password incorrect" });
+        errors.passWord = "Password incorrect";
+        return res.status(400).json(errors);
       }
     });
   });
 });
+
+// ROUTE DESCRIPTION
+// @route   GET api/auth/current
+// @desc    return current user
+// @access  private
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      name: req.user.userName
+    });
+  }
+);
 
 module.exports = router;
