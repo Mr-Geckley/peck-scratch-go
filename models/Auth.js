@@ -10,7 +10,23 @@ const AuthSchema = new Schema({
   passWord: {
     type: String,
     required: true
-  }
+  },
+  exp: [
+    {
+      wins: {
+        type: Number,
+        default: 0
+      },
+      losses: {
+        type: Number,
+        default: 0
+      },
+      ties: {
+        type: Number,
+        default: 0
+      }
+    }
+  ]
 });
 
 module.exports = Auth = mongoose.model("auth", AuthSchema);
