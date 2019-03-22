@@ -19,7 +19,7 @@ const Auth = require("../../models/Auth");
 router.get("/test", (req, res) => res.json({ msg: "auth works" }));
 
 // ROUTE DESCRIPTION
-// @route   GET api/auth/register
+// @route   POST api/auth/register
 // @desc    register user
 // @access  public
 router.post("/register", (req, res) => {
