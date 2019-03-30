@@ -15,6 +15,11 @@ import Login from "./components/auth/Login";
 
 import "./App.css";
 
+// Now let's try to get the game rollin....
+import Test from "./components/game/Test";
+
+//--------------------------------------------------
+
 // Maint. Auth: check for token and do not loose authentication on refresh
 if (localStorage.jwtToken) {
   // set auth token header auth
@@ -40,7 +45,9 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navi />
+            <div className="container" />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/test" component={Test} />
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />

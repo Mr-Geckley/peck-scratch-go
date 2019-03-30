@@ -6,14 +6,17 @@ import { connect } from "react-redux";
 class Landing extends Component {
   componentDidMount() {
     if (this.props.user.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/");
+      console.log("successful logout");
     }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/");
+      console.log("successful logout");
     }
   }
+
   render() {
     return (
       <div>
