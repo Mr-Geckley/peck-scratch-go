@@ -1,4 +1,4 @@
-import { CHOOSE_PLAYER } from "./types";
+import { CHOOSE_PLAYER, SET_PLAYER } from "./types";
 
 // import { CLICK_GAME_SQUARE } from "./types";
 
@@ -18,11 +18,17 @@ export const changeContent = token => {
   };
 };
 
-// export const submitSetPlayer = data => {
-//   let form = document.getElementById("setPlayer");
-//   console.log(form.input.val());
-//   return {
-//     type: "SET_PLAYER",
-//     payload: data
-//   };
-// };
+/**
+ * this action creator creates an object that has a type (SET_PLAYER)
+ * and a payload, which is whatever you want - in this case, the player Avatar 🐱 or 🐔
+ */
+export const submitSetPlayer = playerAvatar => {
+  // mw - this below info should be passed in as playerAvatar, not grabbed from the dom
+  // let form = document.getElementById("setPlayer");
+  // console.log(form.input.val());
+
+  return {
+    type: SET_PLAYER,
+    payload: playerAvatar
+  };
+};
