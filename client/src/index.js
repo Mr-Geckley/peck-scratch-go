@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { combineReducers } from "./reducers/index.js";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

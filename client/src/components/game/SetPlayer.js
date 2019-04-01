@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-
+import { choosePlayer } from "../../actions/gamePlayActions";
 import { connect } from "react-redux";
+import { bindActionCreators } from "../../../../../../AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux";
 
 class SetPlayer extends Component {
   handleForm(e) {
     e.preventDefault();
+    this.props.choosePlayer(e.target.player.value);
+    console.log(JSON.stringify(this.props.gameState));
   }
   handleChange(e) {
     e.preventDefault();
@@ -44,15 +47,15 @@ class SetPlayer extends Component {
 
 function mapStateToProps(state) {
   return {
-    gameState: state.game,
-    user: state.user
+    gameState: state.game
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    submitPlayerOne: () => {}
-  };
+  return bindActionCreators({ choosePlayer: choosePlayer }, dispatch);
 }
 
-export default connect(mapStateToProps)(SetPlayer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SetPlayer);

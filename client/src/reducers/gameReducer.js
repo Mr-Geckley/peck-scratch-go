@@ -1,3 +1,5 @@
+import { SET_PLAYER } from "../actions/types";
+
 const initialState = {
   board: Array(9).fill(""),
   player: null,
@@ -11,6 +13,13 @@ const initialState = {
   isLoaded: false
 };
 
-export default function(state = initialState) {
+export default function(state = initialState, action) {
+  if (action.type === SET_PLAYER) {
+    return {
+      ...state,
+      player: action.val
+    };
+  }
+
   return { ...state };
 }

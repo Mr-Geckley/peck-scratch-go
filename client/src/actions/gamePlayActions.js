@@ -1,4 +1,4 @@
-import { CHOOSE_PLAYER } from "./types";
+import { SET_PLAYER } from "./types";
 
 // import { CLICK_GAME_SQUARE } from "./types";
 
@@ -10,19 +10,15 @@ export const consLogClick = token => {
   };
 };
 
-export const changeContent = token => {
-  console.log(token);
+// Okay so let's create a function that returns the desired type and data.... I guess
+export const setPlayer = formData => {
   return {
-    type: "CLICKED_GAME_SQUARE",
-    payload: token
+    type: SET_PLAYER,
+    payload: formData
   };
 };
 
-// export const submitSetPlayer = data => {
-//   let form = document.getElementById("setPlayer");
-//   console.log(form.input.val());
-//   return {
-//     type: "SET_PLAYER",
-//     payload: data
-//   };
-// };
+// And this is the function which will be imported by the SetPlayer component. This one will do the actual work of changing the state... I think.
+export const choosePlayer = formData => dispatch => {
+  dispatch(setPlayer(formData));
+};

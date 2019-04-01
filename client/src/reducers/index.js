@@ -3,8 +3,10 @@ import userReducer from "./userReducer";
 import errorReducer from "./errorReducer";
 import gameReducer from "./gameReducer";
 
-export default combineReducers({
+const rootReducer = combineReducers({
   user: userReducer,
   errors: errorReducer,
   game: gameReducer
 });
+
+export default rootReducer;

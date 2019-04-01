@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { consLogClick } from "../../actions/gamePlayActions";
-import { changeContent } from "../../actions/gamePlayActions";
+// import { changeContent } from "../../actions/gamePlayActions";
 
 import { connect } from "react-redux";
 import SetPlayer from "./SetPlayer";
@@ -18,10 +18,10 @@ class Test extends Component {
     });
   }
 
-  testClick(e) {
-    e.preventDefault();
-    this.props.consLogClick();
-  }
+  // testClick(e) {
+  //   e.preventDefault();
+  //   this.props.consLogClick();
+  // }
 
   meh(e) {
     console.log("meh");
@@ -95,10 +95,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { consLogClick: consLogClick, changeContent: changeContent },
-    dispatch
-  );
+  return bindActionCreators({ consLogClick: consLogClick }, dispatch);
 }
 
 export default connect(

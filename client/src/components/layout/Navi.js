@@ -12,7 +12,7 @@ class Navi extends Component {
   }
 
   render() {
-    const { isAuthenticated, user } = this.props.user;
+    const { isAuthenticated } = this.props.user;
 
     const userLinks = (
       <ul className="navbar-nav m1-auto">
