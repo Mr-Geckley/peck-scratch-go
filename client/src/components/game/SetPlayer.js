@@ -7,7 +7,7 @@ class SetPlayer extends Component {
   handleForm(e) {
     e.preventDefault();
     this.props.choosePlayer(e.target.player.value);
-    console.log(JSON.stringify(this.props.gameState));
+    // console.log(JSON.stringify(this.props.gameState));
   }
   handleChange(e) {
     e.preventDefault();

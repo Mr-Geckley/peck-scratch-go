@@ -10,7 +10,7 @@ export const consLogClick = token => {
   };
 };
 
-// Okay so let's create a function that returns the desired type and data.... I guess
+// "setPlayer()" returns data for use by "choosePlayer()"
 export const setPlayer = formData => {
   return {
     type: SET_PLAYER,
@@ -18,7 +18,7 @@ export const setPlayer = formData => {
   };
 };
 
-// And this is the function which will be imported by the SetPlayer component. This one will do the actual work of changing the state... I think.
+// "choosePlayer()" calls "setPlayer()" in order to change state.player to the selected 'team', which will enable the game to start
 export const choosePlayer = formData => dispatch => {
   dispatch(setPlayer(formData));
 };

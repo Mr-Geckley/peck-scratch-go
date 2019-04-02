@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { consLogClick } from "../../actions/gamePlayActions";
-// import { changeContent } from "../../actions/gamePlayActions";
 
 import { connect } from "react-redux";
 import SetPlayer from "./SetPlayer";
 
 class Test extends Component {
-  // -------------------------- Test Functions----------------------------------------
+  // "createListItems()" generates an unordered list from state.cknArray. This is just a test function
   createListItems() {
     return this.props.gameState.cknArray.map((token, index) => {
       return (
@@ -18,21 +17,19 @@ class Test extends Component {
     });
   }
 
+  // "testClick()" console logs the content of a clicked target. This is a test function
   // testClick(e) {
   //   e.preventDefault();
   //   this.props.consLogClick();
   // }
 
-  meh(e) {
-    console.log("meh");
-  }
-
   // ------------------------- GAME LOGIC ---------------------------
 
-  // * create a place to play
+  // "renderBoard()" generates the game board, utilizing an array from initial state
   renderBoard() {
     return this.props.gameState.board.map((box, index) => (
       <button
+        // TODO: change the onClick function
         onClick={() => this.meh(this.props.gameState.board[index].innerHTML)}
         className="box btn btn-primary"
         key={index}
@@ -43,31 +40,17 @@ class Test extends Component {
     ));
   }
 
-  // // * handle the click event
-  // handleClick(index) {
-  //   if (this.props.gameState.player && !this.props.gameState.winner) {
-  //     let newBoard = this.props.gameState.board;
-  //     if (this.props.gameState.board[index] === "") {
-  //       newBoard[index] = this.generateToken();
-  //       this.setState({
-  //         board: newBoard,
-  //         player: this.props.gameState.player === "🐔" ? "🐱" : "🐔"
-  //       });
-  //     }
+  // -------------------- LIFE CYCLE METHODS ---------------------------/
 
-  //   this.checkWinner();
-  //   this.checkCatsGame();
-  // }
-  // }
-
-  // -------------------- LIFE CYCLE METHODS ---------------------------
   componentDidMount() {
+    // checks for authentication status and redirects accordingly
     if (!this.props.user.isAuthenticated) {
       this.props.history.push("/");
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    // checks for authentication status and redirects accordingly
     if (!nextProps.user.isAuthenticated) {
       this.props.history.push("/");
     }
@@ -79,6 +62,7 @@ class Test extends Component {
         <h2>Hi</h2>
         <hr />
         <h2>Ary Deets</h2>
+
         <ul>{this.createListItems()}</ul>
         <div className="game-board">{this.renderBoard()}</div>
         <SetPlayer />
@@ -87,6 +71,7 @@ class Test extends Component {
   }
 }
 
+// the functions below plug in state and functions
 function mapStateToProps(state) {
   return {
     gameState: state.game,
