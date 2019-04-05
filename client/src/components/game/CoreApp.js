@@ -5,7 +5,8 @@ import {
   choosePlayer,
   updateWinner,
   updateCknScore,
-  updateKtnScore
+  updateKtnScore,
+  updateCatsGame
 } from "../../actions/gamePlayActions";
 
 import { connect } from "react-redux";
@@ -75,7 +76,7 @@ class CoreApp extends Component {
       // after the state.board and state.player are updated, check to see if we have a winner
 
       this.checkWinner();
-      this.checkCatsGame();
+      // this.checkCatsGame();
     }
   }
   // "checkWinner()" calls "checkMatch()" against it's winning combinations
@@ -102,11 +103,9 @@ class CoreApp extends Component {
       this.props.gameState.board.includes("") &&
       this.props.gameState.winner === null
     ) {
+      return null;
     } else {
-      console.log("CATS GAME");
-      this.setState({
-        catsGame: true
-      });
+      this.props.updateCatsGame();
     }
   }
   // "checkMatch()" scans the board for 3 in a row
@@ -128,12 +127,7 @@ class CoreApp extends Component {
         // this.declareWinner();
         // this.renderGif();
 
-        // this.props.updateKtnScore();
-        // this.props.updateCknScore();
         this.declareWinner();
-        console.log(
-          "WE HAVE A WINNER!!!!! Congrats," + this.props.gameState.player
-        );
       }
     }
   }
@@ -141,8 +135,6 @@ class CoreApp extends Component {
   declareWinner() {
     // spelled "state" as "stayt" so I don't get the var name mixed up with the actual state
     let stayt = this.props.gameState;
-    // let theWinner = stayt.player;
-    // let currentScore = stayt.player === "🐔" ? stayt.cknScore : stayt.ktnScore;
 
     if (stayt.player === "🐔") {
       this.props.updateCknScore();
@@ -151,14 +143,6 @@ class CoreApp extends Component {
       this.props.updateKtnScore();
       this.props.updateWinner();
     }
-    // ? this.setState({
-    //     winner: theWinner,
-    //     cknScore: (currentScore += 1)
-    //   })
-    // : this.setState({
-    //     winner: theWinner,
-    //     ktnScore: (currentScore += 1)
-    //   });
   }
 
   // "evalToken()" determines if a token is part of the 'team' of the current player and returns a boolean
@@ -235,7 +219,8 @@ function mapDispatchToProps(dispatch) {
       choosePlayer: choosePlayer,
       updateWinner: updateWinner,
       updateCknScore: updateCknScore,
-      updateKtnScore: updateKtnScore
+      updateKtnScore: updateKtnScore,
+      updateCatsGame: updateCatsGame
     },
     dispatch
   );

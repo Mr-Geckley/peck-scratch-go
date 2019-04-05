@@ -4,7 +4,8 @@ import {
   SET_WINNER,
   TALLY_CKN_SCORE,
   TALLY_KTN_SCORE,
-  UPDATE_WINNER
+  UPDATE_WINNER,
+  CATS_GAME
 } from "../actions/types";
 
 const initialState = {
@@ -74,6 +75,13 @@ export default function(state = initialState, action) {
     return {
       ...state,
       winner: theWinner
+    };
+  }
+
+  if (action.type === CATS_GAME) {
+    return {
+      ...state,
+      catsGame: true
     };
   }
   // COMING UP: game square clicking action, jackson

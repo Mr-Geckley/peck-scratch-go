@@ -4,7 +4,8 @@ import {
   // SET_WINNER,
   TALLY_CKN_SCORE,
   TALLY_KTN_SCORE,
-  UPDATE_WINNER
+  UPDATE_WINNER,
+  CATS_GAME
 } from "./types";
 
 // import { CLICK_GAME_SQUARE } from "./types";
@@ -75,13 +76,13 @@ export const updateKtnScore = tally => dispatch => {
   dispatch(ktnScoreInfo(tally));
 };
 
-// export const winnerInfo = winner => {
-//   return {
-//     type: UPDATE_WINNER,
-//     payload: winner
-//   };
-// };
+export const catsGameInfo = draw => {
+  return {
+    type: CATS_GAME,
+    payload: draw
+  };
+};
 
-// export const updateWinner = winner => dispatch => {
-//   dispatch(winnerInfo(winner));
-// };
+export const updateCatsGame = draw => dispatch => {
+  dispatch(catsGameInfo(draw));
+};
