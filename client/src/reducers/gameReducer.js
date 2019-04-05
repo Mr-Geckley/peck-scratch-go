@@ -1,4 +1,10 @@
-import { SET_PLAYER } from "../actions/types";
+import {
+  SET_PLAYER,
+  CLICK_GAME_SQUARE,
+  SET_WINNER,
+  TALLY_CKN_SCORE,
+  TALLY_KTN_SCORE
+} from "../actions/types";
 
 const initialState = {
   board: Array(9).fill(""),
@@ -22,6 +28,35 @@ export default function(state = initialState, action) {
     };
   }
 
+  if (action.type === CLICK_GAME_SQUARE) {
+    return {
+      ...state,
+      board: action.payload
+    };
+  }
+
+  if (action.type === SET_WINNER) {
+    return {
+      ...state,
+      winner: action.payload
+    };
+  }
+
+  if (action.type === TALLY_CKN_SCORE) {
+    let chickenScore = state.cknScore;
+    return {
+      ...state,
+      cknScore: (chickenScore += 1)
+    };
+  }
+
+  if (action.type === TALLY_KTN_SCORE) {
+    let kittentScore = state.ktnScore;
+    return {
+      ...state,
+      ktnScore: (kittentScore += 1)
+    };
+  }
   // COMING UP: game square clicking action, jackson
   return { ...state };
 }

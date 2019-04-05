@@ -16,7 +16,7 @@ import Login from "./components/auth/Login";
 import "./App.css";
 
 // Now let's try to get the game rollin....
-import Test from "./components/game/Test";
+import CoreApp from "./components/game/CoreApp";
 
 //--------------------------------------------------
 
@@ -47,7 +47,7 @@ class App extends Component {
             <Navi />
             <div className="container" />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/test" component={Test} />
+            <Route exact path="/main" component={CoreApp} />
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
