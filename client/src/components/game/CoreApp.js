@@ -127,11 +127,38 @@ class CoreApp extends Component {
       ) {
         // this.declareWinner();
         // this.renderGif();
-        console.log("WE HAVE A WINNER!!!!!");
-        this.props.updateKtnScore();
-        this.props.updateCknScore();
+
+        // this.props.updateKtnScore();
+        // this.props.updateCknScore();
+        this.declareWinner();
+        console.log(
+          "WE HAVE A WINNER!!!!! Congrats," + this.props.gameState.player
+        );
       }
     }
+  }
+
+  declareWinner() {
+    // spelled "state" as "stayt" so I don't get the var name mixed up with the actual state
+    let stayt = this.props.gameState;
+    // let theWinner = stayt.player;
+    // let currentScore = stayt.player === "🐔" ? stayt.cknScore : stayt.ktnScore;
+
+    if (stayt.player === "🐔") {
+      this.props.updateCknScore();
+      this.props.updateWinner();
+    } else {
+      this.props.updateKtnScore();
+      this.props.updateWinner();
+    }
+    // ? this.setState({
+    //     winner: theWinner,
+    //     cknScore: (currentScore += 1)
+    //   })
+    // : this.setState({
+    //     winner: theWinner,
+    //     ktnScore: (currentScore += 1)
+    //   });
   }
 
   // "evalToken()" determines if a token is part of the 'team' of the current player and returns a boolean

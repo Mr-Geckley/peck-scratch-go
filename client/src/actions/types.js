@@ -17,4 +17,5 @@ export const TALLY_CKN_SCORE = "TALLY_CKN_SCORE";
 
 export const TALLY_KTN_SCORE = "TALLY_KTN_SCORE";
 
+export const UPDATE_WINNER = "UPDATE_WINNER";
 // export const TALLY_KTN_SCORE = "TALLY_KTN_SCORE";

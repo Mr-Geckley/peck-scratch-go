@@ -3,7 +3,8 @@ import {
   CLICK_GAME_SQUARE,
   SET_WINNER,
   TALLY_CKN_SCORE,
-  TALLY_KTN_SCORE
+  TALLY_KTN_SCORE,
+  UPDATE_WINNER
 } from "../actions/types";
 
 const initialState = {
@@ -55,6 +56,24 @@ export default function(state = initialState, action) {
     return {
       ...state,
       ktnScore: (kittentScore += 1)
+    };
+  }
+
+  if (action.type === UPDATE_WINNER) {
+    let theLooser = state.player;
+    let theWinner = null;
+
+    if (theLooser === "🐔") {
+      theWinner = "🐱";
+    }
+
+    if (theLooser === "🐱") {
+      theWinner = "🐔";
+    }
+
+    return {
+      ...state,
+      winner: theWinner
     };
   }
   // COMING UP: game square clicking action, jackson
