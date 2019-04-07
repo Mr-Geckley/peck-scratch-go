@@ -5,7 +5,8 @@ import {
   TALLY_CKN_SCORE,
   TALLY_KTN_SCORE,
   UPDATE_WINNER,
-  CATS_GAME
+  CATS_GAME,
+  RESET_BOARD
 } from "./types";
 
 // import { CLICK_GAME_SQUARE } from "./types";
@@ -85,4 +86,15 @@ export const catsGameInfo = draw => {
 
 export const updateCatsGame = draw => dispatch => {
   dispatch(catsGameInfo(draw));
+};
+
+export const boardResetInfo = reset => {
+  return {
+    type: RESET_BOARD,
+    payload: reset
+  };
+};
+
+export const updateBoardReset = reset => dispatch => {
+  dispatch(boardResetInfo(reset));
 };

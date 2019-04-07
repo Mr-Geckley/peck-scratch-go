@@ -5,7 +5,8 @@ import {
   TALLY_CKN_SCORE,
   TALLY_KTN_SCORE,
   UPDATE_WINNER,
-  CATS_GAME
+  CATS_GAME,
+  RESET_BOARD
 } from "../actions/types";
 
 const initialState = {
@@ -84,6 +85,19 @@ export default function(state = initialState, action) {
       catsGame: true
     };
   }
+
+  if (action.type === RESET_BOARD) {
+    return {
+      ...state,
+      player: null,
+      winner: null,
+      board: Array(9).fill(""),
+      catsGame: false,
+      pic: null,
+      isLoaded: false
+    };
+  }
+
   // COMING UP: game square clicking action, jackson
   return { ...state };
 }

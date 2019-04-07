@@ -12,6 +12,7 @@ import {
 import { connect } from "react-redux";
 import SetPlayer from "./SetPlayer";
 import TurnIndicator from "./TurnIndicator";
+import ScoreBoard from "./ScoreBoard";
 
 class CoreApp extends Component {
   // ------------------------- IGNORABLE TEST FUNCTIONS ---------------------------
@@ -195,6 +196,7 @@ class CoreApp extends Component {
       <div>
         <TurnIndicator />
         <div className="game-board">{this.renderBoard()}</div>
+        <ScoreBoard />
         <SetPlayer />
       </div>
     );

@@ -20,3 +20,5 @@ export const TALLY_KTN_SCORE = "TALLY_KTN_SCORE";
 export const UPDATE_WINNER = "UPDATE_WINNER";
 
 export const CATS_GAME = "CATS_GAME";
+
+export const RESET_BOARD = "RESET_BOARD";
