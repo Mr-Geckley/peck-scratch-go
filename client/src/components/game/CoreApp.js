@@ -10,7 +10,6 @@ import {
 } from "../../actions/gamePlayActions";
 
 import { connect } from "react-redux";
-import TurnIndicator from "./TurnIndicator";
 import Footer from "./Footer";
 import Header from "./Header";
 class CoreApp extends Component {
@@ -194,7 +193,6 @@ class CoreApp extends Component {
     return (
       <div>
         <Header />
-        <TurnIndicator />
         <div className="game-board">{this.renderBoard()}</div>
         <Footer />
       </div>

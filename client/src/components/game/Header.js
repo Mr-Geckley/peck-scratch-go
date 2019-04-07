@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import TurnIndicator from "./TurnIndicator";
 
 class Header extends Component {
   renderWinnerText() {
@@ -24,7 +25,12 @@ class Header extends Component {
   }
 
   render() {
-    return <header>{this.renderHtml()}</header>;
+    return (
+      <div>
+        <header>{this.renderHtml()}</header>
+        <TurnIndicator />
+      </div>
+    );
   }
 }
 
