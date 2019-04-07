@@ -10,10 +10,8 @@ import {
 } from "../../actions/gamePlayActions";
 
 import { connect } from "react-redux";
-import SetPlayer from "./SetPlayer";
 import TurnIndicator from "./TurnIndicator";
-import ScoreBoard from "./ScoreBoard";
-
+import Footer from "./Footer";
 class CoreApp extends Component {
   // ------------------------- IGNORABLE TEST FUNCTIONS ---------------------------
   // "createListItems()" generates an unordered list from state.cknArray. This is just a test function
@@ -196,8 +194,7 @@ class CoreApp extends Component {
       <div>
         <TurnIndicator />
         <div className="game-board">{this.renderBoard()}</div>
-        <ScoreBoard />
-        <SetPlayer />
+        <Footer />
       </div>
     );
   }
