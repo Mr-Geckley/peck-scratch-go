@@ -12,6 +12,7 @@ import {
 import { connect } from "react-redux";
 import TurnIndicator from "./TurnIndicator";
 import Footer from "./Footer";
+import Header from "./Header";
 class CoreApp extends Component {
   // ------------------------- IGNORABLE TEST FUNCTIONS ---------------------------
   // "createListItems()" generates an unordered list from state.cknArray. This is just a test function
@@ -192,6 +193,7 @@ class CoreApp extends Component {
   render() {
     return (
       <div>
+        <Header />
         <TurnIndicator />
         <div className="game-board">{this.renderBoard()}</div>
         <Footer />
