@@ -11,6 +11,7 @@ import {
 
 import { connect } from "react-redux";
 import SetPlayer from "./SetPlayer";
+import TurnIndicator from "./TurnIndicator";
 
 class CoreApp extends Component {
   // ------------------------- IGNORABLE TEST FUNCTIONS ---------------------------
@@ -192,11 +193,7 @@ class CoreApp extends Component {
   render() {
     return (
       <div>
-        <h2>Hi</h2>
-        <hr />
-        <h2>Ary Deets</h2>
-
-        <ul>{this.createListItems()}</ul>
+        <TurnIndicator />
         <div className="game-board">{this.renderBoard()}</div>
         <SetPlayer />
       </div>
