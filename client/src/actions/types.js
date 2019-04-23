@@ -22,3 +22,7 @@ export const UPDATE_WINNER = "UPDATE_WINNER";
 export const CATS_GAME = "CATS_GAME";
 
 export const RESET_BOARD = "RESET_BOARD";
+
+export const REQ_WIN_GIF = "REQ_WIN_GIF";
+
+export const SET_HOLIDAY_THEME = "SET_HOLIDAY_THEME";

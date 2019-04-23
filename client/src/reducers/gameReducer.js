@@ -6,8 +6,18 @@ import {
   TALLY_KTN_SCORE,
   UPDATE_WINNER,
   CATS_GAME,
-  RESET_BOARD
+  RESET_BOARD,
+  REQ_WIN_GIF,
+  SET_HOLIDAY_THEME
 } from "../actions/types";
+
+export const xmasArray = ["🎅", "👼", "⛄", "🎁", "🎄"];
+
+export const weenArray = ["🎃", "😈", "👽", "👻", "💀"];
+
+export const cknArray = ["🐔", "🐓", "🐣", "🐤", "🐥"];
+
+export const ktnArray = ["😺", "🐈", "🐆", "😻", "😾"];
 
 const initialState = {
   board: Array(9).fill(""),
@@ -15,7 +25,7 @@ const initialState = {
   winner: null,
   catsGame: false,
   cknArray: ["🐔", "🐓", "🐣", "🐤", "🐥"],
-  ktnArray: ["🐆", "🐈", "😺", "😻", "😾"],
+  ktnArray: ["😺", "🐈", "🐆", "😻", "😾"],
   cknScore: 0,
   ktnScore: 0,
   pic: null,
@@ -66,10 +76,10 @@ export default function(state = initialState, action) {
     let theWinner = null;
 
     if (theLooser === "🐔") {
-      theWinner = "🐱";
+      theWinner = "😺";
     }
 
-    if (theLooser === "🐱") {
+    if (theLooser === "😺") {
       theWinner = "🐔";
     }
 
@@ -95,6 +105,31 @@ export default function(state = initialState, action) {
       catsGame: false,
       pic: null,
       isLoaded: false
+    };
+  }
+
+  if (action.type === REQ_WIN_GIF) {
+    return {
+      ...state,
+      pic: action.payload
+    };
+  }
+
+  if (action.type === SET_HOLIDAY_THEME && state.cknArray !== xmasArray) {
+    // console.log("cknArray active.");
+    return {
+      ...state,
+      cknArray: xmasArray,
+      ktnArray: weenArray
+    };
+  }
+
+  if (action.type === SET_HOLIDAY_THEME && state.cknArray === xmasArray) {
+    // console.log("xmasArray");
+    return {
+      ...state,
+      cknArray: cknArray,
+      ktnArray: ktnArray
     };
   }
 

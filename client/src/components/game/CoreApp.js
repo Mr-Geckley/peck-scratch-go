@@ -6,7 +6,8 @@ import {
   updateWinner,
   updateCknScore,
   updateKtnScore,
-  updateCatsGame
+  updateCatsGame,
+  updateWinGif
 } from "../../actions/gamePlayActions";
 
 import { connect } from "react-redux";
@@ -69,7 +70,7 @@ class CoreApp extends Component {
         // .....finally, dispatch or send the new and imporved board to the reducer & switch the player
         this.props.updateBoard(newBoard);
         // set a variable to equal the inactive player....
-        let nextPlayer = state.player === "🐔" ? "🐱" : "🐔";
+        let nextPlayer = state.player === "🐔" ? "😺" : "🐔";
         // ....call choosePlayer to switch turns
         this.props.choosePlayer(nextPlayer);
       }
@@ -124,10 +125,8 @@ class CoreApp extends Component {
         // position 'a' and position 'c' belong to the current player execute the code declared below
         this.evalToken(board[a]) === this.evalToken(board[c])
       ) {
-        // this.declareWinner();
-        // this.renderGif();
-
         this.declareWinner();
+        this.renderGif();
       }
     }
   }
@@ -139,9 +138,12 @@ class CoreApp extends Component {
     if (stayt.player === "🐔") {
       this.props.updateCknScore();
       this.props.updateWinner();
+      // console.log("CONSOLE LOG RENDER GIF: " + this.renderGif());
     } else {
       this.props.updateKtnScore();
       this.props.updateWinner();
+      // this.renderGif();
+      // console.log("CONSOLE LOG RENDER GIF: " + this.renderGif());
     }
   }
 
@@ -172,6 +174,58 @@ class CoreApp extends Component {
       </button>
     ));
   }
+  //======================= gif logic ============================
+  // apiCall(a) {
+  //   fetch(a)
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       let gifURL = result.data.image_url;
+  //       this.renderGif();
+  //       return gifURL;
+  //     });
+  // }
+
+  callUpdateWinGif(url) {
+    this.props.updateWinGif(url);
+  }
+
+  renderGif() {
+    if (!this.props.gameState.pic) {
+      let httpString = "";
+      // this.props.gameState.player === "🐔"
+      //   ? "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=chicken&rating=G"
+      //   : "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=kitten&rating=G";
+
+      if (this.props.gameState.cknArray.includes("🐔")) {
+        if (this.props.gameState.player === "🐔") {
+          httpString =
+            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=chicken&rating=G";
+        } else if (this.props.gameState.player === "😺") {
+          httpString =
+            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=kitten&rating=G";
+        }
+        // return httpString;
+      } else if (this.props.gameState.cknArray.includes("🎅")) {
+        if (this.props.gameState.player === "🐔") {
+          httpString =
+            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=christmas&rating=G";
+        } else if (this.props.gameState.player === "😺") {
+          httpString =
+            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=halloween&rating=G";
+        }
+        // return httpString;
+      }
+
+      fetch(httpString)
+        .then(res => res.json())
+        .then(result => {
+          let gifURL = result.data.image_url;
+          console.log(gifURL);
+          this.callUpdateWinGif(gifURL);
+          return gifURL;
+        });
+    }
+  }
 
   // -------------------- LIFE CYCLE METHODS ---------------------------/
 
@@ -190,10 +244,21 @@ class CoreApp extends Component {
   }
   // ----------------------- RENDER FUNCTION---------------------------------
   render() {
+    let pic = this.props.gameState.pic;
+
     return (
       <div>
         <Header />
         <div className="game-board">{this.renderBoard()}</div>
+        <div
+          id="boardDisplay"
+          className="board"
+          style={{
+            backgroundImage: "url(" + pic + ")",
+            height: 300,
+            width: 300
+          }}
+        />
         <Footer />
       </div>
     );
@@ -216,7 +281,8 @@ function mapDispatchToProps(dispatch) {
       updateWinner: updateWinner,
       updateCknScore: updateCknScore,
       updateKtnScore: updateKtnScore,
-      updateCatsGame: updateCatsGame
+      updateCatsGame: updateCatsGame,
+      updateWinGif: updateWinGif
     },
     dispatch
   );

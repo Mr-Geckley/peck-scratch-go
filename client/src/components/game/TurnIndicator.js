@@ -4,15 +4,29 @@ import { connect } from "react-redux";
 class TurnIndicator extends Component {
   translatePlayer() {
     let currentPlayer = "";
-    if (this.props.gameState.player === "🐔") {
-      currentPlayer = "chickens";
+
+    if (this.props.gameState.cknArray.includes("🐔")) {
+      if (this.props.gameState.player === "🐔") {
+        currentPlayer = "Chickens";
+      } else if (this.props.gameState.player === "😺") {
+        currentPlayer = "Kittens";
+      }
+      return currentPlayer;
+    } else if (this.props.gameState.cknArray.includes("🎅")) {
+      if (this.props.gameState.player === "🐔") {
+        currentPlayer = "Team Christmas";
+      } else if (this.props.gameState.player === "😺") {
+        currentPlayer = "Team Halloween";
+      }
       return currentPlayer;
     }
 
-    if (this.props.gameState.player === "🐱") {
-      currentPlayer = "kittens";
-      return currentPlayer;
-    }
+    // if (this.props.gameState.player === "🐔") {
+    //   currentPlayer = "chickens";
+    // } else if (this.props.gameState.player === "😺") {
+    //   currentPlayer = "kittens";
+    // }
+    // return currentPlayer;
   }
 
   renderHTML() {

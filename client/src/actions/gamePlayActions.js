@@ -6,7 +6,9 @@ import {
   TALLY_KTN_SCORE,
   UPDATE_WINNER,
   CATS_GAME,
-  RESET_BOARD
+  RESET_BOARD,
+  REQ_WIN_GIF,
+  SET_HOLIDAY_THEME
 } from "./types";
 
 // import { CLICK_GAME_SQUARE } from "./types";
@@ -97,4 +99,27 @@ export const boardResetInfo = reset => {
 
 export const updateBoardReset = reset => dispatch => {
   dispatch(boardResetInfo(reset));
+};
+
+export const winGifInfo = apiCall => {
+  return {
+    type: REQ_WIN_GIF,
+    payload: apiCall
+  };
+};
+
+export const updateWinGif = apiCall => dispatch => {
+  dispatch(winGifInfo(apiCall));
+  console.log("UPDATE WIN GIF PARAM: " + apiCall);
+};
+
+export const themeInfo = theme => {
+  return {
+    type: SET_HOLIDAY_THEME,
+    payload: theme
+  };
+};
+
+export const updateTheme = theme => dispatch => {
+  dispatch(themeInfo(theme));
 };

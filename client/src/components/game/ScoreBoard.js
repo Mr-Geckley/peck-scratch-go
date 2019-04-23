@@ -8,6 +8,8 @@ class ScoreBoard extends Component {
   }
 
   render() {
+    let playerA = this.props.gameState.cknArray[0];
+    let playerB = this.props.gameState.ktnArray[0];
     return (
       <React.Fragment>
         <section className="scoreBoardContainer">
@@ -15,15 +17,11 @@ class ScoreBoard extends Component {
           <main>
             <div className="scoreBoard">
               <div className="cknScore">
-                <span role="img" aria-label="chicken">
-                  🐔
-                </span>
+                <span>{playerA}</span>
                 <span className="score">{this.props.gameState.cknScore}</span>
               </div>
               <div className="ktnScore">
-                <span role="img" aria-label="kitten">
-                  😺
-                </span>
+                <span>{playerB}</span>
                 <span className="score">{this.props.gameState.ktnScore}</span>
               </div>
             </div>

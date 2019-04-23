@@ -3,12 +3,19 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { updateTheme } from "../../actions/gamePlayActions";
+import { bindActionCreators } from "redux";
 
 // TODO: CREATE NAVI MENU
 class Navi extends Component {
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
+  }
+
+  onThemeChangeClick() {
+    this.props.updateTheme();
+    console.log("them change button clicked");
   }
 
   render() {
@@ -19,6 +26,12 @@ class Navi extends Component {
         <li className="nav-item">
           <button onClick={this.onLogoutClick.bind(this)} className="nav-link">
             LOGOUT
+          </button>
+          <button
+            onClick={this.onThemeChangeClick.bind(this)}
+            className="nav-link"
+          >
+            CHANGE THEME
           </button>
         </li>
       </ul>
@@ -65,11 +78,22 @@ Navi.propTypes = {
   user: PropTypes.object.isRequired
 };
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      updateTheme: updateTheme,
+      logoutUser: logoutUser
+    },
+    dispatch
+  );
+}
+
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  gameState: state.game
 });
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  mapDispatchToProps
 )(Navi);

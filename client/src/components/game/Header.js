@@ -5,15 +5,21 @@ import TurnIndicator from "./TurnIndicator";
 class Header extends Component {
   renderWinnerText() {
     let theWinner = "";
-    if (this.props.gameState.winner === "🐔") {
-      theWinner = "CHICKENS";
+    if (this.props.gameState.cknArray.includes("🐔")) {
+      if (this.props.gameState.winner === "🐔") {
+        theWinner = "TEAM CHICKENS";
+      } else if (this.props.gameState.winner === "😺") {
+        theWinner = "TEAM KITTENS";
+      }
+    } else if (this.props.gameState.cknArray.includes("🎅")) {
+      if (this.props.gameState.winner === "🐔") {
+        theWinner = "TEAM CHRISTMAS";
+      } else if (this.props.gameState.winner === "😺") {
+        theWinner = "TEAM HALLOWEEN";
+      }
     }
 
-    if (this.props.gameState.winner === "🐱") {
-      theWinner = "KITTENS";
-    }
-
-    return <h1>{theWinner} WIN</h1>;
+    return <h1>{theWinner} WINS</h1>;
   }
 
   renderHtml() {
