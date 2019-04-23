@@ -13,6 +13,7 @@ import {
 import { connect } from "react-redux";
 import Footer from "./Footer";
 import Header from "./Header";
+
 class CoreApp extends Component {
   // ------------------------- IGNORABLE TEST FUNCTIONS ---------------------------
   // "createListItems()" generates an unordered list from state.cknArray. This is just a test function
@@ -164,11 +165,14 @@ class CoreApp extends Component {
 
   // "renderBoard()" generates the game board, utilizing an array from initial state
   renderBoard() {
+    let background = this.props.gameState.pic === null ? "" : "transparent";
+    let font = this.props.gameState.pic === null ? "" : "transparent";
     return this.props.gameState.board.map((box, index) => (
       <button
         onClick={() => this.claimSquare(index)}
-        className="box btn btn-primary"
+        className="box"
         key={index}
+        style={{ backgroundColor: background, color: font }}
       >
         {box}
       </button>
@@ -211,7 +215,7 @@ class CoreApp extends Component {
             "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=christmas&rating=G";
         } else if (this.props.gameState.player === "😺") {
           httpString =
-            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=halloween&rating=G";
+            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=spooky&rating=G";
         }
         // return httpString;
       }
@@ -249,15 +253,20 @@ class CoreApp extends Component {
     return (
       <div>
         <Header />
-        <div className="game-board">{this.renderBoard()}</div>
+        <div
+          className="game-board"
+          style={{ backgroundImage: "url(" + pic + ")" }}
+        >
+          {this.renderBoard()}
+        </div>
         <div
           id="boardDisplay"
           className="board"
-          style={{
-            backgroundImage: "url(" + pic + ")",
-            height: 300,
-            width: 300
-          }}
+          // style={{
+          //   backgroundImage: "url(" + pic + ")"
+          //   // height: 300,
+          //   // width: 300
+          // }}
         />
         <Footer />
       </div>
