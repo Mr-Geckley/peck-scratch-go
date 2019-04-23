@@ -254,12 +254,12 @@ class CoreApp extends Component {
       <div>
         <Header />
         <div
-          className="game-board"
+          className="game-board "
           style={{ backgroundImage: "url(" + pic + ")" }}
         >
           {this.renderBoard()}
         </div>
-        <div
+        {/* <div
           id="boardDisplay"
           className="board"
           // style={{
@@ -267,7 +267,7 @@ class CoreApp extends Component {
           //   // height: 300,
           //   // width: 300
           // }}
-        />
+        /> */}
         <Footer />
       </div>
     );

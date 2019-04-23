@@ -15,57 +15,57 @@ class Navi extends Component {
 
   onThemeChangeClick() {
     this.props.updateTheme();
-    console.log("them change button clicked");
   }
 
   render() {
     const { isAuthenticated } = this.props.user;
 
     const userLinks = (
-      <ul className="navbar-nav m1-auto">
-        <li className="nav-item">
-          <button onClick={this.onLogoutClick.bind(this)} className="nav-link">
-            LOGOUT
-          </button>
-          <button
-            onClick={this.onThemeChangeClick.bind(this)}
-            className="nav-link"
-          >
-            CHANGE THEME
-          </button>
-        </li>
-      </ul>
+      <div className="collapse navbar-collapse  " id="navbarMenu">
+        <ul className="navbar-nav">
+          <li className="nav-item ml-auto">
+            <button onClick={this.onLogoutClick.bind(this)}>LOGOUT</button>
+          </li>
+          <li className="nav-item ml-auto">
+            <button onClick={this.onThemeChangeClick.bind(this)}>
+              CHANGE THEME
+            </button>
+          </li>
+        </ul>
+      </div>
     );
 
     const publicLinks = (
-      <ul className="navbar-nav m1-auto">
-        <li className="nav-item">
-          <Link className="nav-link" to="/register">
-            sign up
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/login">
-            login
-          </Link>
-        </li>
-      </ul>
+      <div className="ml-auto collapse navbar-collapse" id="navbarMenu">
+        <ul className="navbar-nav steve">
+          <li className="nav-item ">
+            <Link className="nav-link" to="/register">
+              sign up
+            </Link>
+          </li>
+          <li className="nav-item ">
+            <Link className="nav-link" to="/login">
+              login
+            </Link>
+          </li>
+        </ul>
+      </div>
     );
 
     return (
-      <nav>
-        <div className="containter">
-          <Link className="navbar-brand" to="/">
-            Peck-Scratch-Go
-          </Link>
+      <nav className="navbar navbar-expand-sm navbar-light bg-light">
+        <Link className="navbar-brand" to="/">
+          Peck-Scratch-Go
+        </Link>
+        <div className="ml-auto">
           <button
-            className="navbar-toggler"
-            type="button"
+            className="navbar-toggler "
             data-toggle="collapse"
-            data-target="#mobil-nav"
+            data-target="#navbarMenu"
           >
             <span className="navbar-toggler-icon" />
           </button>
+
           {isAuthenticated ? userLinks : publicLinks}
         </div>
       </nav>
