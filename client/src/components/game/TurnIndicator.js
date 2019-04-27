@@ -20,21 +20,35 @@ class TurnIndicator extends Component {
       }
       return currentPlayer;
     }
-
-    // if (this.props.gameState.player === "🐔") {
-    //   currentPlayer = "chickens";
-    // } else if (this.props.gameState.player === "😺") {
-    //   currentPlayer = "kittens";
-    // }
-    // return currentPlayer;
   }
 
   renderHTML() {
-    return (this.props.gameState.player === null &&
-      this.props.gameState.winner === null) ||
-      this.props.gameState.winner != null ? null : (
-      <h2>{this.translatePlayer()}, it's y'alls turn</h2>
-    );
+    // refer to 'state' as 'stayt' to indicate that it's just an abbreviation.
+    // I don't like homonyms in the context of code
+    let stayt = this.props.gameState;
+
+    if (
+      (stayt.player === null && stayt.winner === null) ||
+      (stayt.winner !== null || stayt.catsGame === true)
+    ) {
+      return null;
+    } else {
+      return (
+        <h4 className="text-center">
+          {this.translatePlayer()}, it's y'alls turn
+        </h4>
+      );
+    }
+
+    // =-=-=-=-=-=-=-=-=-= the block of code below function just like the code above,
+    // =-=-=-=-=-=-=-=-=-= however it exclude the case of a cats game
+    // return (this.props.gameState.player === null &&
+    //   this.props.gameState.winner === null) ||
+    //   this.props.gameState.winner != null ? null : (
+    //   <h4 className="text-center">
+    //     {this.translatePlayer()}, it's y'alls turn
+    //   </h4>
+    // );
   }
 
   render() {

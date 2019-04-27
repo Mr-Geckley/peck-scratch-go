@@ -68,6 +68,8 @@ class CoreApp extends Component {
         // .....populate the square with an appropriate token.....
         newBoard[index] = this.generateToken();
 
+        console.log(newBoard[index]);
+
         // .....finally, dispatch or send the new and imporved board to the reducer & switch the player
         this.props.updateBoard(newBoard);
         // set a variable to equal the inactive player....
@@ -76,9 +78,9 @@ class CoreApp extends Component {
         this.props.choosePlayer(nextPlayer);
       }
       // after the state.board and state.player are updated, check to see if we have a winner
+      this.checkCatsGame();
 
       this.checkWinner();
-      // this.checkCatsGame();
     }
   }
   // "checkWinner()" calls "checkMatch()" against it's winning combinations
@@ -105,9 +107,11 @@ class CoreApp extends Component {
       this.props.gameState.board.includes("") &&
       this.props.gameState.winner === null
     ) {
+      console.log("not a cats game");
       return null;
     } else {
       this.props.updateCatsGame();
+      console.log("cats game mutha sucka");
     }
   }
   // "checkMatch()" scans the board for 3 in a row
@@ -163,10 +167,19 @@ class CoreApp extends Component {
     return result;
   }
 
-  // "renderBoard()" generates the game board, utilizing an array from initial state
+  changeBackground(player, winner) {
+    let bg = "";
+    if (this.props.gameState.pic !== null) {
+      bg = "transparent";
+    }
+
+    return bg;
+  }
+
   renderBoard() {
-    let background = this.props.gameState.pic === null ? "" : "transparent";
+    let background = this.changeBackground(this.props.gameState.player);
     let font = this.props.gameState.pic === null ? "" : "transparent";
+
     return this.props.gameState.board.map((box, index) => (
       <button
         onClick={() => this.claimSquare(index)}
@@ -203,19 +216,19 @@ class CoreApp extends Component {
       if (this.props.gameState.cknArray.includes("🐔")) {
         if (this.props.gameState.player === "🐔") {
           httpString =
-            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=chicken&rating=G";
+            "https://api.giphy.com/v1/gifs/random?api_key=dfAcJOMGrFnodfBgAcjARs1Qe77W7k6W&tag=chicken&rating=G";
         } else if (this.props.gameState.player === "😺") {
           httpString =
-            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=kitten&rating=G";
+            "https://api.giphy.com/v1/gifs/random?api_key=dfAcJOMGrFnodfBgAcjARs1Qe77W7k6W&tag=kitten&rating=G";
         }
         // return httpString;
       } else if (this.props.gameState.cknArray.includes("🎅")) {
         if (this.props.gameState.player === "🐔") {
           httpString =
-            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=christmas&rating=G";
+            "https://api.giphy.com/v1/gifs/random?api_key=dfAcJOMGrFnodfBgAcjARs1Qe77W7k6W&tag=christmas&rating=G";
         } else if (this.props.gameState.player === "😺") {
           httpString =
-            "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=spooky&rating=G";
+            "https://api.giphy.com/v1/gifs/random?api_key=dfAcJOMGrFnodfBgAcjARs1Qe77W7k6W&tag=spooky&rating=G";
         }
         // return httpString;
       }
@@ -251,23 +264,15 @@ class CoreApp extends Component {
     let pic = this.props.gameState.pic;
 
     return (
-      <div>
+      <div className="main-screen">
         <Header />
         <div
-          className="game-board "
+          className="game-board row"
           style={{ backgroundImage: "url(" + pic + ")" }}
         >
           {this.renderBoard()}
         </div>
-        {/* <div
-          id="boardDisplay"
-          className="board"
-          // style={{
-          //   backgroundImage: "url(" + pic + ")"
-          //   // height: 300,
-          //   // width: 300
-          // }}
-        /> */}
+
         <Footer />
       </div>
     );

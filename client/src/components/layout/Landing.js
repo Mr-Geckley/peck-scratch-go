@@ -19,23 +19,23 @@ class Landing extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container landing-container ">
         <div>
-          <div className="row">
-            <h1 className="col text-center ">Peck-Scratch-Go</h1>
-          </div>
+          <h1 className="col text-center pre-game-h1">Peck-Scratch-Go</h1>
           <div className="row ">
             <p className="col text-center">Create a username to get started</p>
           </div>
           <div className="row">
-            <span className="col" />
+            <span className="col " />
 
-            <Link className="col text-center" to="/register">
-              Sign Up
-            </Link>
-            <Link className="col text-center" to="/login">
-              Login
-            </Link>
+            <div className="landing-links-div">
+              <Link className="col text-center" to="/register">
+                Sign Up
+              </Link>
+              <Link className="col text-center" to="/login">
+                Login
+              </Link>
+            </div>
             <span className="col" />
           </div>
         </div>

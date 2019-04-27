@@ -52,10 +52,12 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="login">
-        <h1>Login</h1>
+      <div className=" login-container">
+        <h1 className="pre-game-h1">LOGIN, FRIEND</h1>
         <p>Login to your account to get started!</p>
-        <form onSubmit={this.onSubmit}>
+
+        <form onSubmit={this.onSubmit} className="form">
+          {/* USERNAME */}
           <input
             type="text"
             className={classnames("form-control form-control=lg", {
@@ -69,6 +71,8 @@ class Login extends Component {
           {errors.userName && (
             <div className="invalid-feedback">{errors.userName}</div>
           )}
+
+          {/* PASSWORD */}
           <input
             type="password"
             className={classnames("form-control form-control=lg", {
@@ -82,7 +86,7 @@ class Login extends Component {
           {errors.passWord && (
             <div className="invalid-feedback">{errors.passWord}</div>
           )}
-          <input type="submit" />
+          <input type="submit" className="submit-button" />
         </form>
       </div>
     );

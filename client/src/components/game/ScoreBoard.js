@@ -12,29 +12,31 @@ class ScoreBoard extends Component {
     let playerB = this.props.gameState.ktnArray[0];
     return (
       <React.Fragment>
-        <section className="scoreBoardContainer">
-          <header />
-          <main>
-            <div className="scoreBoard">
-              <div className="cknScore">
-                <span>{playerA}</span>
+        <div className="container">
+          <div className="scoreboardDiv form-inline">
+            <div>
+              <label className="player form-control">
+                {playerA}
                 <span className="score">{this.props.gameState.cknScore}</span>
-              </div>
-              <div className="ktnScore">
-                <span>{playerB}</span>
+              </label>
+
+              <label className="player form-control">
+                {playerB}
                 <span className="score">{this.props.gameState.ktnScore}</span>
-              </div>
+              </label>
             </div>
+
             <button
+              className="action-button ml-auto"
               disabled={
                 !this.props.gameState.winner && !this.props.gameState.catsGame
               }
               onClick={() => this.resetGame()}
             >
-              PLAY AGAIN AGAIN
+              PLAY AGAIN
             </button>
-          </main>
-        </section>
+          </div>
+        </div>
       </React.Fragment>
     );
   }

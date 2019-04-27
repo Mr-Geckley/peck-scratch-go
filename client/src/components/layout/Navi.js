@@ -21,15 +21,23 @@ class Navi extends Component {
     const { isAuthenticated } = this.props.user;
 
     const userLinks = (
-      <div className="collapse navbar-collapse  " id="navbarMenu">
+      <div className="collapse navbar-collapse" id="navbarMenu">
         <ul className="navbar-nav">
-          <li className="nav-item ml-auto">
-            <button onClick={this.onLogoutClick.bind(this)}>LOGOUT</button>
+          <li
+            className="nav-item ml-auto"
+            onClick={this.onLogoutClick.bind(this)}
+          >
+            <a href="#" className="nav-link">
+              LOGOUT
+            </a>
           </li>
-          <li className="nav-item ml-auto">
-            <button onClick={this.onThemeChangeClick.bind(this)}>
+          <li
+            className="nav-item ml-auto"
+            onClick={this.onThemeChangeClick.bind(this)}
+          >
+            <a href="#" className="nav-link">
               CHANGE THEME
-            </button>
+            </a>
           </li>
         </ul>
       </div>
