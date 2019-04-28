@@ -230,9 +230,7 @@ class CoreApp extends Component {
           httpString =
             "https://api.giphy.com/v1/gifs/random?api_key=dfAcJOMGrFnodfBgAcjARs1Qe77W7k6W&tag=spooky&rating=G";
         }
-        // return httpString;
       }
-
       fetch(httpString)
         .then(res => res.json())
         .then(result => {

@@ -19,7 +19,8 @@ body {
   background: #2c3e50;
 }
 
-.action-button {
+.action-button,
+.submit-button {
   background: #16f4d0;
   color: #02182b;
   padding: 0.25rem 0.5rem;
@@ -27,6 +28,12 @@ body {
   font-family: "Rhodium Libre", serif;
   border-radius: 5px;
 }
+
+.login-container p {
+  color: white;
+  font-family: "Rhodium Libre", serif;
+}
+
 h1 {
   font-family: "Monoton", cursive;
   font-size: 1.8rem;

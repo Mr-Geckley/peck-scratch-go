@@ -54,7 +54,7 @@ class Register extends Component {
     return (
       <div className="register register-container pre-game-h1">
         <h1>Sign Up</h1>
-        <p>Create an account to get started!</p>
+        <p style={{ color: "white" }}>Create an account to get started!</p>
         <form onSubmit={this.onSubmit}>
           <input
             type="text"
@@ -95,7 +95,9 @@ class Register extends Component {
           {errors.confPassWord && (
             <div className="invalid-feedback">{errors.confPassWord}</div>
           )}
-          <input type="submit" className="submit-button" />
+          <button type="submit" className="submit-button">
+            submit
+          </button>
         </form>
       </div>
     );

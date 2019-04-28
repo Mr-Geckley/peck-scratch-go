@@ -53,7 +53,7 @@ class Login extends Component {
 
     return (
       <div className=" login-container">
-        <h1 className="pre-game-h1">LOGIN, FRIEND</h1>
+        <h1 className="pre-game-h1">Login</h1>
         <p>Login to your account to get started!</p>
 
         <form onSubmit={this.onSubmit} className="form">
@@ -86,7 +86,9 @@ class Login extends Component {
           {errors.passWord && (
             <div className="invalid-feedback">{errors.passWord}</div>
           )}
-          <input type="submit" className="submit-button" />
+          <button type="submit" className="submit-button">
+            submit
+          </button>
         </form>
       </div>
     );
