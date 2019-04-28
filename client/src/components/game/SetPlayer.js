@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { choosePlayer } from "../../actions/gamePlayActions";
 import { connect } from "react-redux";
-import { bindActionCreators } from "../../../../../../AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux";
+import { bindActionCreators } from "redux";
 
 class SetPlayer extends Component {
   handleForm(e) {
