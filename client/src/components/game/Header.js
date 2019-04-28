@@ -45,7 +45,7 @@ class Header extends Component {
     } else if (this.props.gameState.winner === null) {
       return (
         <div style={{ paddingTop: "1.75rem" }}>
-          <h1 className="text-center">PECK-SCRATCH-GO</h1>
+          <h1 className="text-center title-header">PECK-SCRATCH-GO</h1>
         </div>
       );
     } else if (this.props.gameState.winner) {

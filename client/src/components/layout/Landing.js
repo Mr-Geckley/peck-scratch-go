@@ -23,7 +23,9 @@ class Landing extends Component {
         <div>
           <h1 className="col text-center pre-game-h1">Peck-Scratch-Go</h1>
           <div className="row ">
-            <p className="col text-center">Create a username to get started</p>
+            <p className="col text-center landing-p">
+              Create a username to get started
+            </p>
           </div>
           <div className="row">
             <span className="col " />

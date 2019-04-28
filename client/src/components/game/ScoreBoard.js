@@ -14,20 +14,24 @@ class ScoreBoard extends Component {
       <React.Fragment>
         <div className="container">
           <div className="scoreboardDiv form-inline">
-            <div>
-              <label className="player form-control">
-                {playerA}
-                <span className="score">{this.props.gameState.cknScore}</span>
-              </label>
+            <div className="choose-slash-score">
+              <div className="player-div">
+                <label className="player form-control score-div">
+                  {playerA}
+                  <span className="score">{this.props.gameState.cknScore}</span>
+                </label>
+              </div>
 
-              <label className="player form-control">
-                {playerB}
-                <span className="score">{this.props.gameState.ktnScore}</span>
-              </label>
+              <div className="player-div ">
+                <label className="player form-control score-div">
+                  {playerB}
+                  <span className="score">{this.props.gameState.ktnScore}</span>
+                </label>
+              </div>
             </div>
 
             <button
-              className="action-button ml-auto"
+              className="action-button play-again ml-auto"
               disabled={
                 !this.props.gameState.winner && !this.props.gameState.catsGame
               }

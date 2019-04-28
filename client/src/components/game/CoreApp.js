@@ -264,16 +264,18 @@ class CoreApp extends Component {
     let pic = this.props.gameState.pic;
 
     return (
-      <div className="main-screen">
-        <Header />
-        <div
-          className="game-board row"
-          style={{ backgroundImage: "url(" + pic + ")" }}
-        >
-          {this.renderBoard()}
-        </div>
+      <div>
+        <div className="main-screen">
+          <Header />
+          <div
+            className="game-board row"
+            style={{ background: "url(" + pic + ")" }}
+          >
+            {this.renderBoard()}
+          </div>
 
-        <Footer />
+          <Footer />
+        </div>
       </div>
     );
   }

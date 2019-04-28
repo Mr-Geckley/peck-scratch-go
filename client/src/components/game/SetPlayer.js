@@ -19,38 +19,45 @@ class SetPlayer extends Component {
     let playerB = this.props.gameState.ktnArray[0];
     return (
       <div className="container">
-        <form onSubmit={e => this.handleForm(e)} className="form-inline">
+        <form onSubmit={e => this.handleForm(e)} className="form-inline ">
           <div className="choose-slash-score">
-            <label className="player form-control ">
-              <span>{playerA}</span>
-              <input
-                type="radio"
-                name="player"
-                value="🐔"
-                onInput={e => this.handleChange(e)}
-              />
-            </label>
+            <div className="player-div">
+              <label className="player form-control ">
+                <span>{playerA}</span>
+                <input
+                  type="radio"
+                  name="player"
+                  value="🐔"
+                  onInput={e => this.handleChange(e)}
+                />
+              </label>
+            </div>
 
-            <label className="player form-control ">
-              <span role="img" aria-label="kitten">
-                {playerB}
-              </span>
-              <input
-                type="radio"
-                name="player"
-                value="😺"
-                onInput={e => this.handleChange(e)}
-              />
-            </label>
+            <div className="player-div">
+              <label className="player form-control ">
+                <span role="img" aria-label="kitten">
+                  {playerB}
+                </span>
+                <input
+                  type="radio"
+                  name="player"
+                  value="😺"
+                  onInput={e => this.handleChange(e)}
+                />
+              </label>
+            </div>
           </div>
-          <input
+          <button
+            input
             id="startButton"
             type="submit"
             value="START"
             disabled={true}
             className="ml-auto action-button"
             style={{ display: "block" }}
-          />
+          >
+            START
+          </button>
         </form>
       </div>
     );
