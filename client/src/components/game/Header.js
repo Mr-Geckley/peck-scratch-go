@@ -5,7 +5,6 @@ import TurnIndicator from "./TurnIndicator";
 class Header extends Component {
   renderWinnerText() {
     let theWinner = "";
-    let evalCatsGame = "";
     if (this.props.gameState.cknArray.includes("🐔")) {
       if (this.props.gameState.winner === "🐔") {
         theWinner = "TEAM CHICKENS";
@@ -18,10 +17,6 @@ class Header extends Component {
       } else if (this.props.gameState.winner === "😺") {
         theWinner = "TEAM HALLOWEEN";
       }
-    }
-
-    if (this.props.gameState.catsGame === false) {
-      evalCatsGame = "false";
     }
 
     return (

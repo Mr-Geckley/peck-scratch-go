@@ -48,7 +48,6 @@ class SetPlayer extends Component {
             </div>
           </div>
           <button
-            input
             id="startButton"
             type="submit"
             value="START"
